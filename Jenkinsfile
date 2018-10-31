@@ -8,11 +8,15 @@ node {
     }
 
 
-    stage('sonarQube Analysis'){
+stage('sonarQube Analysis'){
          withSonarQubeEnv('My SonarQube Server') {
-             sh '/usr/local/bin/sonar-scanner'
-         } // SonarQube taskId is automatically attached to the pipeline context
+         def scannerHome = tool 'SonarQube Scanner 3.2.0.1227';
+         withSonarQubeEnv('My SonarQube Server') {
+           sh "${scannerHome}/bin/sonar-scanner"
+         }         } // SonarQube taskId is automatically attached to the pipeline context
     }
+
+
     stage('Build image') {
         /* This builds the actual image; synonymous to
          * docker build on the command line */
