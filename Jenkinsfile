@@ -9,12 +9,12 @@ node {
 
 
 stage('sonarQube Analysis'){
-         withSonarQubeEnv('My SonarQube Server') {
          def scannerHome = tool 'SonarQube Scanner 3.2.0.1227';
-         withSonarQubeEnv('My SonarQube Server') {
+         sh "echo hello ${scannerHome}"
+	 withSonarQubeEnv('My SonarQube Server') {
              sh "echo ${scannerHome} _ /bin/sonar-scanner";
 	     sh "${scannerHome}/bin/sonar-scanner";
-         }         } // SonarQube taskId is automatically attached to the pipeline context
+         }       
     }
 
 
