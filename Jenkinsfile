@@ -9,7 +9,9 @@ node {
 
 
     stage('sonarQube Analysis'){
-
+         withSonarQubeEnv('My SonarQube Server') {
+             sh 'mvn clean package sonar:sonar'
+         } // SonarQube taskId is automatically attached to the pipeline context
     }
     stage('Build image') {
         /* This builds the actual image; synonymous to
