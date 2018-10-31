@@ -10,9 +10,7 @@ node {
 
 stage('sonarQube Analysis'){
          def scannerHome = tool 'SonarQube Scanner 3.2.0.1227';
-         sh "echo hello ${scannerHome}"
 	 withSonarQubeEnv('My SonarQube Server') {
-             sh "echo ${scannerHome} _ /bin/sonar-scanner";
 	     sh "${scannerHome}/bin/sonar-scanner";
          }       
     }
